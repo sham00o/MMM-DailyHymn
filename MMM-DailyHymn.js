@@ -38,11 +38,10 @@ Module.register("MMM-DailyHymn", {
     getDom: function() {
         Log.log("Updating MMM-DailyHymn DOM.");
 
-        var reference = "";
-        var text = "";
+        var hymn = "";
 
-        if (this.ref != null && this.text != null) {
-            reference = this.ref;
+        if (this.hymn != null) {
+            hymn = this.hymn;
             text = this.text;
         }
 
@@ -52,14 +51,16 @@ Module.register("MMM-DailyHymn", {
         var wrapper = document.createElement("div");
 
         const title  = document.createElement("div");
-	      title.innerHTML = reference;
-        title.className = 'small' + alignment;
+	      title.innerHTML = hymn.title;
+        title.className = 'bright medium' + alignment;
         wrapper.appendChild(title)
 
-        const body  = document.createElement("div");
-        body.className = 'body bright ' + size + alignment
-        body.innerHTML = text;
-        wrapper.appendChild(body)
+        for (var stanza of hymn.stanzas) {
+          const body  = document.createElement("div");
+          body.className = 'body small ' + size + alignment
+          body.innerHTML = text;
+          wrapper.appendChild(body)
+        }
 
         return wrapper;
       },
@@ -68,8 +69,7 @@ Module.register("MMM-DailyHymn", {
         Log.log("socket received from Node Helper");
         if(notification == "HYMN_RESULT"){
             Log.log(payload);
-            this.ref = payload.ref;
-            this.text = payload.text;
+            this.hymn = payload.hymn;
 
             this.updateDom();
         }
