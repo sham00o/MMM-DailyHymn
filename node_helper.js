@@ -7,7 +7,7 @@
 
 var NodeHelper = require("node_helper");
 var request = require('request');
-const admin = require('firebase-admin');
+const firebase = require('firebase');
 
 const config = {
 	apiKey: "AIzaSyD_sC-7grFUHuxyxCf5s1XoYMz1YMJ1Ioc",
@@ -20,7 +20,7 @@ const config = {
 	measurementId: "G-WPTME5B7DD"
 };
 
-admin.initializeApp(config);
+firebase.initializeApp(config);
 
 
 module.exports = NodeHelper.create({
@@ -38,8 +38,7 @@ module.exports = NodeHelper.create({
 	hymnRequest: async function(email, password) {
 		var self = this;
 		var credential = await admin.auth().signInWithEmailAndPassword(email, password)
-		var token = credential.user.getIdToken()
-		console.log(token)
+		var token = await credential.user.getIdToken()
 		var url = `https://us-central1-project-hymnal.cloudfunctions.net/app/hymn`
 		var headers = {
 			"Authorization": "Bearer "+token
@@ -49,8 +48,7 @@ module.exports = NodeHelper.create({
 			if(!error && response.statusCode == 200){
 				var res = JSON.parse(response.body)
 				var result = {
-					ref: verse.ref,
-					text: verse.text
+					hymn: res.data
 				}
 				self.sendSocketNotification('HYMN_RESULT', result);
 			}
