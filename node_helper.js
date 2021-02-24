@@ -47,8 +47,9 @@ module.exports = NodeHelper.create({
 		request({ url: url, method: 'GET', headers: headers }, function(error, response, body) {
 			if(!error && response.statusCode == 200){
 				var res = JSON.parse(response.body)
+				const obj = Object.values(res.data)[0]
 				var result = {
-					hymn: res.data
+					hymn: obj
 				}
 				self.sendSocketNotification('HYMN_RESULT', result);
 			}
