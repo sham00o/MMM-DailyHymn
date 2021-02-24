@@ -50,14 +50,24 @@ Module.register("MMM-DailyHymn", {
         var wrapper = document.createElement("div");
 
         const title  = document.createElement("div");
-	      title.innerHTML = hymn.title;
-        title.className = 'bright medium' + alignment;
+	      title.innerHTML = "Hymnal #" + hymn.labels.Hymnal;
+        title.className = 'bright large' + alignment;
         wrapper.appendChild(title)
+
+        const category  = document.createElement("div");
+        category.innerHTML = hymn.category;
+        category.className = 'xsmall' + alignment;
+        wrapper.appendChild(category)
+
+        const subcategory  = document.createElement("div");
+        subcategory.innerHTML = hymn.subcategory;
+        subcategory.className = 'xsmall' + alignment;
+        wrapper.appendChild(subcategory)
 
         for (var stanza of hymn.stanzas) {
           const body  = document.createElement("div");
-          body.className = 'body small ' + size + alignment
-          body.innerHTML = stanza.text;
+          body.className = 'body small ' + alignment
+          body.innerHTML = stanza.text.replace(/\\n/g, "<br>");
           wrapper.appendChild(body)
         }
 
