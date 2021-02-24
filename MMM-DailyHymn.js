@@ -42,7 +42,6 @@ Module.register("MMM-DailyHymn", {
 
         if (this.hymn != null) {
             hymn = this.hymn;
-            text = this.text;
         }
 
 	      var size = this.config.size
@@ -58,7 +57,7 @@ Module.register("MMM-DailyHymn", {
         for (var stanza of hymn.stanzas) {
           const body  = document.createElement("div");
           body.className = 'body small ' + size + alignment
-          body.innerHTML = text;
+          body.innerHTML = stanza.text;
           wrapper.appendChild(body)
         }
 
