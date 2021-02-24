@@ -1,0 +1,23 @@
+{
+  "name": "mmm-dailyhymn",
+  "version": "1.0.0",
+  "description": "Magic mirror module which displays a hymn for the day",
+  "main": "MMM-DailyHymn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sham00o/MMM-DailyHymn.git"
+  },
+  "author": "Samuel Liu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sham00o/MMM-DailyHymn/issues"
+  },
+  "homepage": "https://github.com/sham00o/MMM-DailyHymn#readme",
+  "dependencies": {
+    "firebase": "^8.2.9",
+    "request": "^2.83.0"
+  }
+}

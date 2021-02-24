@@ -1,0 +1,9 @@
+.MMM-DailyHymn {
+    max-width: 100vh;
+    height: auto;
+    max-height: 100vh;
+}
+
+.MMM-DailyHymn .body {
+    margin-top: 10px
+}
