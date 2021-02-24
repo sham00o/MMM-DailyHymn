@@ -37,7 +37,7 @@ module.exports = NodeHelper.create({
 
 	hymnRequest: async function(email, password) {
 		var self = this;
-		var credential = await admin.auth().signInWithEmailAndPassword(email, password)
+		var credential = await firebase.auth().signInWithEmailAndPassword(email, password)
 		var token = await credential.user.getIdToken()
 		var url = `https://us-central1-project-hymnal.cloudfunctions.net/app/hymn`
 		var headers = {
