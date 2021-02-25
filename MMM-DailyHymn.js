@@ -16,11 +16,11 @@ Module.register("MMM-DailyHymn", {
         var credentials = { email: this.config.email, password: this.config.password }
 
         //Do this once first
-        self.sendSocketNotification('START', credentials);
+        self.sendSocketNotification('GET_HYMN', credentials);
 
         //Then every hour
         setInterval(function() {
-                self.sendSocketNotification('START', credentials);
+                self.sendSocketNotification('GET_HYMN', credentials);
         }, 180000); // perform every 3 minutes
     },
 
@@ -48,6 +48,8 @@ Module.register("MMM-DailyHymn", {
         var alignment = this.config.alignment ? ' '+this.config.alignment : ''
 
         var wrapper = document.createElement("div");
+
+        if (!this.hymn) return wrapper;
 
         const title  = document.createElement("div");
 	      title.innerHTML = "Hymn #" + hymn.labels.Hymnal;
